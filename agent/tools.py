@@ -140,7 +140,7 @@ TOOL_DEFINITIONS = [
         }
     },
 
-    # 3. Grant SP role — deploy companion .hdbrole + grant to HDI_USER & HE2E_USER
+    # 3. Grant SP role — deploy companion .hdbrole + grant to HDI_USER & HANA_PRIV_USER
     {
         "toolSpec": {
             "name": "grant_sp_role",
@@ -148,7 +148,7 @@ TOOL_DEFINITIONS = [
                 "For a structured privilege (.hdbstructuredprivilege) that is already deployed, "
                 "create and deploy a companion .hdbrole that bundles the SP via schema_analytic_privileges "
                 "and auto-detected views via schema_object_privileges, then grant the role to "
-                "HDI_USER and HE2E_USER via GRANT_CONTAINER_SCHEMA_ROLE. "
+                "HDI_USER and HANA_PRIV_USER via GRANT_CONTAINER_SCHEMA_ROLE. "
                 "Use this when data preview fails with 'insufficient privilege' after an SP is deployed."
             ),
             "inputSchema": {
@@ -564,13 +564,13 @@ TOOL_DEFINITIONS = [
         }
     },
 
-    # 16. Grant remote source privilege (auto-connects as HE2E_USER)
+    # 16. Grant remote source privilege (auto-connects as HANA_PRIV_USER)
     {
         "toolSpec": {
             "name": "grant_remote_source_privilege",
             "description": (
                 "Automatically grant CREATE VIRTUAL TABLE on a remote source to a HANA user. "
-                "Connects as the privileged user (HE2E_USER from HANA_PRIV_USER env var), "
+                "Connects as the privileged user (HANA_PRIV_USER from HANA_PRIV_USER env var), "
                 "runs GRANT CREATE VIRTUAL TABLE ON REMOTE SOURCE '<RS>' TO '<grantee>' WITH GRANT OPTION, "
                 "then closes the privileged connection immediately. "
                 "Call this BEFORE deploying the first .hdbgrants + .hdbvirtualtable for a new remote source. "
@@ -937,7 +937,7 @@ def _grant_synonym_access(hana: "HANAClient", args: dict, username: str = "") ->
     """
     Grant SELECT on source_schema to:
       - <target_container>#OO and #DI  (needed for MAKE / compile)
-      - HE2E_USER and HDI_USERNAME     (needed for runtime synonym resolution by end users)
+      - HANA_PRIV_USER and HDI_USERNAME     (needed for runtime synonym resolution by end users)
 
     Also enables cross-container access at the TARGET container's GROUP level.
 
@@ -946,8 +946,8 @@ def _grant_synonym_access(hana: "HANAClient", args: dict, username: str = "") ->
       2. Fallback via SOURCE_SCHEMA#DI.GRANT_CONTAINER_SCHEMA_PRIVILEGES (works when
          HDI_USER has DI API access to the source container but not schema-level GRANT OPTION)
 
-    Without granting HE2E_USER, synonyms compile and work for HDI_USER but fail for
-    HE2E_USER with "insufficient privilege" because synonym resolution checks the
+    Without granting HANA_PRIV_USER, synonyms compile and work for HDI_USER but fail for
+    HANA_PRIV_USER with "insufficient privilege" because synonym resolution checks the
     CALLING USER's privileges on the underlying object, not the synonym owner's.
     """
     source_schema = args.get("source_schema", "").strip().upper()
@@ -966,9 +966,9 @@ def _grant_synonym_access(hana: "HANAClient", args: dict, username: str = "") ->
     uname = (username.strip().upper() if username
              else os.environ.get("HDI_USERNAME", "").strip().upper())
     extra_dbx = [u.strip().upper() for u in os.environ.get("HDI_DBX_USERS", "").split(",") if u.strip()]
-    # Always include HE2E_USER; add uname if it's a real named user (not HDI_USER itself)
+    # Always include HANA_PRIV_USER; add uname if it's a real named user (not HDI_USER itself)
     end_users = list(dict.fromkeys(
-        u for u in ["HE2E_USER", uname] + extra_dbx
+        u for u in [os.environ.get("HANA_PRIV_USER", ""), uname] + extra_dbx
         if u and u not in ("HDI_USER", oo_user, di_user)
     ))
 
@@ -1114,7 +1114,7 @@ def _grant_sp_role(hana: "HANAClient", args: dict, username: str = "") -> str:
     """
     For an already-deployed structured privilege, create and deploy the companion
     .hdbrole (with schema_analytic_privileges + auto-detected schema_object_privileges)
-    and grant it to HDI_USER and HE2E_USER via GRANT_CONTAINER_SCHEMA_ROLE.
+    and grant it to HDI_USER and HANA_PRIV_USER via GRANT_CONTAINER_SCHEMA_ROLE.
 
     Returns the real status dict from _deploy_and_grant_sp_role so failures are visible.
     """

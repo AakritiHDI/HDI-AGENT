@@ -258,7 +258,7 @@ END;"""
         """
         primary_user = (username or os.environ.get("HDI_USERNAME", "") or self.user).upper()
         extra_dbx = [u.strip().upper() for u in os.environ.get("HDI_DBX_USERS", "").split(",") if u.strip()]
-        SYSTEM_USERS = {"HDI_USER", "HE2E_USER"}
+        SYSTEM_USERS = {"HDI_USER", os.environ.get("HANA_PRIV_USER", "")}
         all_candidates = list(dict.fromkeys([primary_user] + list(SYSTEM_USERS) + extra_dbx))
         target_users = all_candidates
         # NOTE: "CREATE TEMPORARY TABLE" is NOT a valid privilege for GRANT_CONTAINER_SCHEMA_PRIVILEGES.
@@ -301,7 +301,7 @@ END;"""
 
         di_rc, di_result = _run_di_grant(target_users)
         if di_rc != 0:
-            fallback_users = [u for u in target_users if u in ("HDI_USER", "HE2E_USER")]
+            fallback_users = [u for u in target_users if u in ("HDI_USER", os.environ.get("HANA_PRIV_USER", ""))]
             if fallback_users:
                 di_rc2, di_result2 = _run_di_grant(fallback_users)
                 di_result = f"{di_result} -> retry fallback: {di_result2}"
@@ -540,7 +540,7 @@ END;"""
     def _deploy_and_grant_sp_role(self, container: str, priv_name: str, username: str = None) -> dict:
         """
         Deploy a companion .hdbrole that bundles a structured privilege via
-        schema_analytic_privileges, then grant the role to HDI_USER + HE2E_USER.
+        schema_analytic_privileges, then grant the role to HDI_USER + HANA_PRIV_USER.
         """
         import json as _json
 
@@ -593,7 +593,7 @@ END;"""
             _log.info("SP_ROLE | %s | MAKE errors: %s", container, errs)
             return status
 
-        for grant_user in ["HDI_USER", "HE2E_USER"]:
+        for grant_user in ["HDI_USER", os.environ.get("HANA_PRIV_USER", "")]:
             cur = self.conn.cursor()
             try:
                 cur.execute("CREATE LOCAL TEMPORARY COLUMN TABLE #CSR_MSGS LIKE _SYS_DI.TT_MESSAGES")
@@ -639,10 +639,10 @@ END;"""
         return status
 
     def _grant_structured_privilege(self, container: str, priv_name: str, username: str = None) -> None:
-        """GRANT STRUCTURED PRIVILEGE to primary user, HDI_USER, HE2E_USER."""
+        """GRANT STRUCTURED PRIVILEGE to primary user, HDI_USER, HANA_PRIV_USER."""
         primary_user = (username or os.environ.get("HDI_USERNAME", "") or self.user).upper()
         extra_dbx = [u.strip().upper() for u in os.environ.get("HDI_DBX_USERS", "").split(",") if u.strip()]
-        all_users = list(dict.fromkeys([primary_user, "HDI_USER", "HE2E_USER"] + extra_dbx))
+        all_users = list(dict.fromkeys([primary_user, "HDI_USER", os.environ.get("HANA_PRIV_USER", "")] + extra_dbx))
         connection_user = self.user.upper()
         target_users = [u for u in all_users if u != connection_user]
         full_priv_name = f"{container.upper()}::{priv_name}"
@@ -976,7 +976,7 @@ END;"""
                 _vt_uname = (username or os.environ.get("HDI_USERNAME", "") or "").strip().upper()
                 _vt_extra = [u.strip().upper() for u in os.environ.get("HDI_DBX_USERS", "").split(",") if u.strip()]
                 _vt_targets = list(dict.fromkeys(
-                    u for u in [_vt_conn_user, _vt_uname, "HDI_USER", "HE2E_USER"] + _vt_extra if u
+                    u for u in [_vt_conn_user, _vt_uname, "HDI_USER", os.environ.get("HANA_PRIV_USER", "")] + _vt_extra if u
                 ))
                 for _vp in vt_files_deployed:
                     _vt_name = _VTP2(_vp).stem.upper()
@@ -1033,7 +1033,7 @@ END;"""
                     _vt_uname2 = (username or os.environ.get("HDI_USERNAME", "") or "").strip().upper()
                     _vt_extra2 = [u.strip().upper() for u in os.environ.get("HDI_DBX_USERS", "").split(",") if u.strip()]
                     _vt_targets2 = list(dict.fromkeys(
-                        u for u in [_vt_conn_user2, _vt_uname2, "HDI_USER", "HE2E_USER"] + _vt_extra2 if u
+                        u for u in [_vt_conn_user2, _vt_uname2, "HDI_USER", os.environ.get("HANA_PRIV_USER", "")] + _vt_extra2 if u
                     ))
                     for _vp2 in vt_files:
                         _vt_name2 = _VTP3(_vp2).stem.upper()
@@ -1582,7 +1582,7 @@ END;"""
         """
         Grant CREATE VIRTUAL TABLE privilege on a remote source.
         """
-        priv_user = os.environ.get("HANA_PRIV_USER", "HE2E_USER")
+        priv_user = os.environ.get("HANA_PRIV_USER", "")
         priv_password = os.environ.get("HANA_PRIV_PASSWORD", "")
         host = os.environ["HANA_HOST"]
         port = int(os.environ.get("HANA_PORT", 443))
