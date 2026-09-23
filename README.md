@@ -140,11 +140,8 @@ HDIAgent.chat()
 | Stored Procedure | `.hdbprocedure` | `docs/hdbprocedure.md` |
 | Function | `.hdbfunction` | `docs/hdbfunction.md` |
 | Trigger | `.hdbtrigger` | `docs/hdbtrigger.md` |
-| Sequence | `.hdbsequence` | `docs/hdbsequence.md` |
 | Index | `.hdbindex` | `docs/hdbindex.md` |
-| Constraint | `.hdbconstraint` | `docs/hdbconstraint.md` |
 | Table Type | `.hdbtabletype` | `docs/hdbtabletype.md` |
-| Table Data (Seed) | `.hdbtabledata` | `docs/hdbtabledata.md` |
 | Synonym | `.hdbsynonym` | `docs/hdbsynonym.md` |
 | Synonym Config | `.hdbsynonymconfig` | `docs/hdbsynonymconfig.md` |
 | Role | `.hdbrole` | `docs/hdbrole.md` |
@@ -158,6 +155,3 @@ HDIAgent.chat()
 | Logical Schema | `.hdblogicalschema` | `docs/hdblogicalschema.md` |
 | Application Time | `.hdbapplicationtime` | `docs/hdbapplicationtime.md` |
 | System Versioning | `.hdbsystemversioning` | `docs/hdbsystemversioning.md` |
-| Flow Graph | `.hdbflowgraph` | `docs/hdbflowgraph.md` |
-| ESH Config | `.hdbeshconfig` | `docs/hdbeshconfig.md` |
-| Statistics | `.hdbstatistics` | `docs/hdbstatistics.md` |
