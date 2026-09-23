@@ -132,9 +132,32 @@ HDIAgent.chat()
 
 | Artifact | Extension | Reference Doc |
 |----------|-----------|---------------|
-| Table | `.hdbtable` | `docs/hdbtable.md` |
+| Column Table | `.hdbtable` | `docs/hdbtable.md` |
+| Migration Table | `.hdbmigrationtable` | `docs/hdbmigrationtable.md` |
 | View | `.hdbview` | `docs/hdbview.md` |
+| Calculation View | `.hdbcalculationview` | `docs/hdbcalculationview.md` |
+| Projection View | `.hdbprojectionview` | `docs/hdbprojectionview.md` |
 | Stored Procedure | `.hdbprocedure` | `docs/hdbprocedure.md` |
+| Function | `.hdbfunction` | `docs/hdbfunction.md` |
+| Trigger | `.hdbtrigger` | `docs/hdbtrigger.md` |
 | Sequence | `.hdbsequence` | `docs/hdbsequence.md` |
-| Synonym | `.hdbsynonym` | `docs/hdbsynonym.md` |
 | Index | `.hdbindex` | `docs/hdbindex.md` |
+| Constraint | `.hdbconstraint` | `docs/hdbconstraint.md` |
+| Table Type | `.hdbtabletype` | `docs/hdbtabletype.md` |
+| Table Data (Seed) | `.hdbtabledata` | `docs/hdbtabledata.md` |
+| Synonym | `.hdbsynonym` | `docs/hdbsynonym.md` |
+| Synonym Config | `.hdbsynonymconfig` | `docs/hdbsynonymconfig.md` |
+| Role | `.hdbrole` | `docs/hdbrole.md` |
+| Grants | `.hdbgrants` | `docs/hdbgrants.md` |
+| Structured Privilege | `.hdbstructuredprivilege` | `docs/hdbstructuredprivilege.md` |
+| Analytic Privilege | `.hdbanalyticprivilege` | `docs/hdbanalyticprivilege.md` |
+| Virtual Table | `.hdbvirtualtable` | `docs/hdbvirtualtable.md` |
+| SQLScript Library | `.hdblibrary` | `docs/hdblibrary.md` |
+| Graph Workspace | `.hdbgraphworkspace` | `docs/hdbgraphworkspace.md` |
+| Scheduler Job | `.hdbschedulerjob` | `docs/hdbschedulerjob.md` |
+| Logical Schema | `.hdblogicalschema` | `docs/hdblogicalschema.md` |
+| Application Time | `.hdbapplicationtime` | `docs/hdbapplicationtime.md` |
+| System Versioning | `.hdbsystemversioning` | `docs/hdbsystemversioning.md` |
+| Flow Graph | `.hdbflowgraph` | `docs/hdbflowgraph.md` |
+| ESH Config | `.hdbeshconfig` | `docs/hdbeshconfig.md` |
+| Statistics | `.hdbstatistics` | `docs/hdbstatistics.md` |
