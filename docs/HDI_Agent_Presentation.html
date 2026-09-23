@@ -1,0 +1,908 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>HDI-Agent Presentation</title>
+<style>
+  body {
+    font-family: Calibri, Arial, sans-serif;
+    font-size: 11pt;
+    color: #1a1a1a;
+    margin: 0;
+    padding: 0;
+    background: #fff;
+  }
+  .slide {
+    page-break-after: always;
+    border: 2px solid #0070C0;
+    border-radius: 6px;
+    margin: 30px 40px;
+    padding: 30px 40px;
+    background: #fff;
+    min-height: 460px;
+  }
+  .slide-title {
+    background: #0070C0;
+    color: #fff;
+    font-size: 20pt;
+    font-weight: bold;
+    padding: 14px 20px;
+    margin: -30px -40px 24px -40px;
+    border-radius: 4px 4px 0 0;
+    letter-spacing: 0.5px;
+  }
+  .slide-subtitle {
+    color: #0070C0;
+    font-size: 13pt;
+    font-weight: bold;
+    margin-top: 0;
+    margin-bottom: 18px;
+    border-bottom: 2px solid #0070C0;
+    padding-bottom: 6px;
+  }
+  h1 { font-size: 22pt; color: #0070C0; margin-bottom: 4px; }
+  h2 { font-size: 15pt; color: #003366; margin-top: 24px; margin-bottom: 8px; }
+  h3 { font-size: 12pt; color: #0070C0; margin-top: 16px; margin-bottom: 6px; }
+  p  { margin: 8px 0; line-height: 1.6; }
+  ul { margin: 8px 0 8px 24px; line-height: 1.8; }
+  li { margin-bottom: 4px; }
+  pre, code {
+    font-family: Consolas, "Courier New", monospace;
+    font-size: 9pt;
+    background: #f0f4f8;
+    border: 1px solid #c8d8e8;
+    border-radius: 4px;
+    padding: 12px 16px;
+    display: block;
+    white-space: pre;
+    margin: 12px 0;
+    line-height: 1.55;
+    color: #1a1a1a;
+  }
+  table {
+    border-collapse: collapse;
+    width: 100%;
+    margin: 14px 0;
+    font-size: 10.5pt;
+  }
+  th {
+    background: #0070C0;
+    color: #fff;
+    padding: 8px 12px;
+    text-align: left;
+    font-weight: bold;
+  }
+  td {
+    padding: 7px 12px;
+    border: 1px solid #c8d8e8;
+    vertical-align: top;
+  }
+  tr:nth-child(even) td { background: #f0f6ff; }
+  .highlight-box {
+    background: #e8f4ff;
+    border-left: 4px solid #0070C0;
+    padding: 10px 16px;
+    margin: 12px 0;
+    border-radius: 0 4px 4px 0;
+  }
+  .warn-box {
+    background: #fff8e8;
+    border-left: 4px solid #E59500;
+    padding: 10px 16px;
+    margin: 12px 0;
+    border-radius: 0 4px 4px 0;
+  }
+  .success-box {
+    background: #e8f5e9;
+    border-left: 4px solid #2E7D32;
+    padding: 10px 16px;
+    margin: 12px 0;
+    border-radius: 0 4px 4px 0;
+  }
+  .badge {
+    display: inline-block;
+    background: #0070C0;
+    color: white;
+    border-radius: 12px;
+    padding: 2px 10px;
+    font-size: 9pt;
+    font-weight: bold;
+    margin-right: 4px;
+  }
+  .center { text-align: center; }
+  .title-slide .slide-title {
+    background: #003366;
+    font-size: 24pt;
+    padding: 24px 28px;
+  }
+  .title-slide p {
+    font-size: 13pt;
+    color: #555;
+  }
+  .flow-step {
+    background: #f0f6ff;
+    border: 1px solid #0070C0;
+    border-radius: 6px;
+    padding: 10px 16px;
+    margin: 8px 0;
+    font-family: Consolas, monospace;
+    font-size: 10pt;
+  }
+  .arrow { color: #0070C0; font-size: 14pt; text-align: center; display: block; margin: 2px 0; }
+  .two-col { display: table; width: 100%; }
+  .col-left  { display: table-cell; width: 48%; padding-right: 2%; vertical-align: top; }
+  .col-right { display: table-cell; width: 48%; padding-left: 2%; vertical-align: top; }
+</style>
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════════════════════════════
+     SLIDE 1 — TITLE
+═══════════════════════════════════════════════════════════════ -->
+<div class="slide title-slide">
+  <div class="slide-title">HDI-Agent</div>
+  <br>
+  <h1 class="center">AI-Powered SAP HANA HDI Deployment Assistant</h1>
+  <p class="center" style="font-size:14pt; color:#0070C0; font-weight:bold; margin-top:18px;">
+    Automate HDI Artifact Creation, Deployment &amp; Management<br>using Natural Language
+  </p>
+  <br>
+  <div class="highlight-box center" style="font-size:12pt;">
+    <strong>Built on:</strong>&nbsp;&nbsp;
+    <span class="badge">GPT-4o</span>
+    <span class="badge">SAP HANA Cloud</span>
+    <span class="badge">HDI (HANA Deployment Infrastructure)</span>
+    <span class="badge">FastAPI</span>
+    <span class="badge">React</span>
+  </div>
+  <br>
+  <p class="center" style="color:#888; font-size:10pt;">
+    June 2026 &nbsp;|&nbsp; HDI Automation Team
+  </p>
+</div>
+
+
+<!-- ═══════════════════════════════════════════════════════════════
+     SLIDE 2 — PROBLEM STATEMENT
+═══════════════════════════════════════════════════════════════ -->
+<div class="slide">
+  <div class="slide-title">The Problem: Manual HDI Development is Slow &amp; Complex</div>
+
+  <div class="warn-box">
+    <strong>Traditional HDI development requires:</strong>
+  </div>
+
+  <ul>
+    <li>Knowledge of <strong>30+ artifact file types</strong> (.hdbtable, .hdbview, .hdbcalculationview, .hdblibrary, …)</li>
+    <li>Writing <strong>exact HDI DDL syntax</strong> — even a single quote error fails the deploy</li>
+    <li>Manually maintaining <strong>.hdiconfig</strong> to register every plugin type</li>
+    <li>Calling DI API in the correct sequence: <strong>WRITE → MAKE → GRANT</strong></li>
+    <li>Managing grants, structured privileges, roles and analytic privileges explicitly</li>
+    <li>Debugging silent failures by reading <strong>HANA M_MESSAGES</strong> tables</li>
+    <li>Re-deploying after plugin registration changes (CVs, libraries require special MAKE order)</li>
+  </ul>
+
+  <div class="success-box" style="margin-top:24px;">
+    <strong>HDI-Agent solves all of this:</strong>
+    Just describe what you want in plain English — the agent handles syntax, deployment, and grants automatically.
+  </div>
+</div>
+
+
+<!-- ═══════════════════════════════════════════════════════════════
+     SLIDE 3 — WHAT IS SAP HANA HDI?
+═══════════════════════════════════════════════════════════════ -->
+<div class="slide">
+  <div class="slide-title">What is SAP HANA HDI?</div>
+  <p class="slide-subtitle">HDI = HANA Deployment Infrastructure</p>
+
+  <p>HDI is SAP HANA's <strong>container-based deployment system</strong> for managing database artifacts.
+  Instead of running raw DDL directly, you define artifacts in design-time files and let HDI compile and activate them.</p>
+
+  <table>
+    <tr><th>Concept</th><th>Description</th><th>Analogy</th></tr>
+    <tr><td><strong>Container</strong></td><td>An isolated namespace (schema) in HANA — all artifacts live here</td><td>A private project folder</td></tr>
+    <tr><td><strong>Work Area</strong></td><td>Staging area — files written but not yet activated</td><td>Draft / staging branch</td></tr>
+    <tr><td><strong>Runtime Schema</strong></td><td>Live activated objects visible in DBX (tables, views, procs)</td><td>Production database</td></tr>
+    <tr><td><strong>.hdiconfig</strong></td><td>Plugin registry — maps file extensions to HANA build plugins</td><td>package.json / build config</td></tr>
+    <tr><td><strong>DI.WRITE</strong></td><td>Stage a design-time file in the work area</td><td>git add</td></tr>
+    <tr><td><strong>DI.MAKE</strong></td><td>Compile and activate staged files → creates runtime objects</td><td>git push / CI build</td></tr>
+    <tr><td><strong>DI.DELETE</strong></td><td>Remove a file from work area and undeploy the runtime object</td><td>git rm + drop table</td></tr>
+  </table>
+
+  <div class="highlight-box">
+    <strong>Key Principle:</strong> DI.WRITE stages files. DI.MAKE activates them. Without MAKE, nothing appears in the database.
+  </div>
+</div>
+
+
+<!-- ═══════════════════════════════════════════════════════════════
+     SLIDE 4 — HDI CONTAINER LIFECYCLE FROM SCRATCH
+═══════════════════════════════════════════════════════════════ -->
+<div class="slide">
+  <div class="slide-title">HDI Container Lifecycle — From Scratch</div>
+
+  <div class="flow-step"><strong>Step 1 — CREATE CONTAINER</strong><br>
+  CALL _SYS_DI.CREATE_CONTAINER('AGENTHDI_CONTAINER', ...)<br>
+  → HANA creates schema "AGENTHDI_CONTAINER"<br>
+  → Technical users created: AGENTHDI_CONTAINER#OO (Object Owner), AGENTHDI_CONTAINER#DI (DI User)</div>
+
+  <span class="arrow">▼</span>
+
+  <div class="flow-step"><strong>Step 2 — GRANT DI API PRIVILEGES</strong><br>
+  GRANT_CONTAINER_API_PRIVILEGES → HDI_USER gets WRITE / MAKE / DELETE / LIST access</div>
+
+  <span class="arrow">▼</span>
+
+  <div class="flow-step"><strong>Step 3 — WRITE .hdiconfig to Work Area</strong><br>
+  DI.WRITE(".hdiconfig", '{"file_suffixes": {"hdbtable": {"plugin_name": "com.sap.hana.di.table"}, ...}}')<br>
+  → Registers ALL build plugins for this container</div>
+
+  <span class="arrow">▼</span>
+
+  <div class="flow-step"><strong>Step 4 — WRITE Artifact Files to Work Area</strong><br>
+  DI.WRITE("src/EMPLOYEE.hdbtable", 'COLUMN TABLE "EMPLOYEE" (...)')<br>
+  → File is staged — NOT yet active in the database</div>
+
+  <span class="arrow">▼</span>
+
+  <div class="flow-step"><strong>Step 5 — DI.MAKE (Deploy / Activate)</strong><br>
+  DI.MAKE(DEPLOY=[".hdiconfig", "src/EMPLOYEE.hdbtable"])<br>
+  → HANA compiles files using registered plugins<br>
+  → CREATE COLUMN TABLE "EMPLOYEE" executed in schema AGENTHDI_CONTAINER</div>
+
+  <span class="arrow">▼</span>
+
+  <div class="flow-step"><strong>Step 6 — GRANT Schema Privileges</strong><br>
+  GRANT SELECT, EXECUTE ON SCHEMA "AGENTHDI_CONTAINER" TO HDI_USER<br>
+  → Users can now query the table in DBX</div>
+</div>
+
+
+<!-- ═══════════════════════════════════════════════════════════════
+     SLIDE 5 — CONTAINER INTERNAL STRUCTURE
+═══════════════════════════════════════════════════════════════ -->
+<div class="slide">
+  <div class="slide-title">HDI Container — Internal Structure</div>
+
+<pre>
+HANA Database
+│
+├── _SYS_DI                           ← DI System: manages ALL containers
+│   ├── T_DEFAULT_CONTAINER_ADMIN_PRIVILEGES
+│   ├── CREATE_CONTAINER_GROUP(...)
+│   └── CREATE_CONTAINER(...)
+│
+├── _SYS_DI#AGENTHDI_GROUP            ← Container Group API
+│
+└── AGENTHDI_CONTAINER                ← Runtime Schema (what users see)
+    ├── TABLE: EMPLOYEE
+    ├── TABLE: PRODUCT
+    ├── VIEW:  EMPLOYEE_VIEW
+    ├── PROCEDURE: GET_EMPLOYEE
+    ├── CALCULATION VIEW: CV_SALES
+    └── LIBRARY: MATH_UTILS
+
+    Work Area (staging — not visible in schema)
+    ├── .hdiconfig          ← plugin registry
+    ├── src/EMPLOYEE.hdbtable
+    ├── src/EMPLOYEE_VIEW.hdbview
+    └── src/CV_SALES.hdbcalculationview
+</pre>
+
+  <table>
+    <tr><th>Technical User</th><th>Role</th><th>Who controls it</th></tr>
+    <tr><td><code>AGENTHDI_CONTAINER#OO</code></td><td>Object Owner — owns all runtime objects (tables, views, etc.)</td><td>HDI system</td></tr>
+    <tr><td><code>AGENTHDI_CONTAINER#DI</code></td><td>DI User — executes MAKE/WRITE operations, processes .hdbgrants</td><td>HDI system</td></tr>
+    <tr><td><code>HDI_USER</code></td><td>Application user — the agent connects as this user</td><td>Admin configured</td></tr>
+    <tr><td><code>HE2E_USER</code></td><td>Privileged user — used for grants, remote source privileges</td><td>Admin configured</td></tr>
+  </table>
+</div>
+
+
+<!-- ═══════════════════════════════════════════════════════════════
+     SLIDE 6 — HOW HDI-AGENT WORKS
+═══════════════════════════════════════════════════════════════ -->
+<div class="slide">
+  <div class="slide-title">How HDI-Agent Works</div>
+
+  <div class="two-col">
+    <div class="col-left">
+      <h3>User types in plain English:</h3>
+      <div class="highlight-box">
+        <em>"Create an EMPLOYEE table with ID, NAME, DEPARTMENT and SALARY columns, then create a view that shows only Engineering department employees"</em>
+      </div>
+
+      <h3>Agent Pipeline:</h3>
+      <div class="flow-step">① User message received via React UI</div>
+      <span class="arrow">▼</span>
+      <div class="flow-step">② GPT-4o reads artifact documentation (.hdbtable, .hdbview syntax)</div>
+      <span class="arrow">▼</span>
+      <div class="flow-step">③ Tool call: <strong>create_artifact_file</strong><br>→ Generates correct DDL syntax</div>
+      <span class="arrow">▼</span>
+      <div class="flow-step">④ Tool call: <strong>deploy_artifact</strong><br>→ DI.WRITE → DI.MAKE</div>
+      <span class="arrow">▼</span>
+      <div class="flow-step">⑤ Post-deploy: auto-grant schema privileges</div>
+      <span class="arrow">▼</span>
+      <div class="flow-step">⑥ Response: "✅ EMPLOYEE table + view deployed successfully"</div>
+    </div>
+    <div class="col-right">
+      <h3>What the agent generates:</h3>
+<pre>
+-- EMPLOYEE.hdbtable
+COLUMN TABLE "EMPLOYEE" (
+  "EMP_ID"     INTEGER NOT NULL,
+  "NAME"       NVARCHAR(100),
+  "DEPARTMENT" NVARCHAR(50),
+  "SALARY"     DECIMAL(10,2),
+  PRIMARY KEY ("EMP_ID")
+)
+
+-- EMPLOYEE_VIEW.hdbview
+VIEW "EMPLOYEE_VIEW" AS
+SELECT * FROM "EMPLOYEE"
+WHERE "DEPARTMENT" = 'Engineering'
+</pre>
+      <div class="success-box">
+        <strong>No manual SQL writing needed.</strong><br>
+        Agent handles syntax, plugin registration, MAKE sequence, and grants.
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- ═══════════════════════════════════════════════════════════════
+     SLIDE 7 — SUPPORTED ARTIFACT TYPES
+═══════════════════════════════════════════════════════════════ -->
+<div class="slide">
+  <div class="slide-title">Supported Artifact Types — 30+ Types</div>
+
+  <table>
+    <tr><th>Category</th><th>File Extension</th><th>What it creates</th></tr>
+    <tr>
+      <td><strong>Tables</strong></td>
+      <td><code>.hdbtable</code></td>
+      <td>Column store table with PK, constraints, associations</td>
+    </tr>
+    <tr>
+      <td><strong>Migration Table</strong></td>
+      <td><code>.hdbmigrationtable</code></td>
+      <td>Versioned table with ALTER support (schema evolution)</td>
+    </tr>
+    <tr>
+      <td><strong>Virtual Table</strong></td>
+      <td><code>.hdbvirtualtable</code></td>
+      <td>Table pointing to external data (SDA / remote source)</td>
+    </tr>
+    <tr>
+      <td><strong>Collection</strong></td>
+      <td><code>.hdbcollection</code></td>
+      <td>Document store collection (JSON documents)</td>
+    </tr>
+    <tr>
+      <td><strong>View</strong></td>
+      <td><code>.hdbview</code></td>
+      <td>SQL view over tables, with structured privilege check</td>
+    </tr>
+    <tr>
+      <td><strong>Calculation View</strong></td>
+      <td><code>.hdbcalculationview</code></td>
+      <td>Multi-dimensional analytical view (replaces BW InfoCubes)</td>
+    </tr>
+    <tr>
+      <td><strong>Procedure</strong></td>
+      <td><code>.hdbprocedure</code></td>
+      <td>SQLScript stored procedure</td>
+    </tr>
+    <tr>
+      <td><strong>Function</strong></td>
+      <td><code>.hdbfunction</code></td>
+      <td>Scalar or table-valued SQLScript function</td>
+    </tr>
+    <tr>
+      <td><strong>Trigger</strong></td>
+      <td><code>.hdbtrigger</code></td>
+      <td>DML trigger (BEFORE/AFTER INSERT/UPDATE/DELETE)</td>
+    </tr>
+    <tr>
+      <td><strong>Library</strong></td>
+      <td><code>.hdblibrary</code></td>
+      <td>Reusable SQLScript function library</td>
+    </tr>
+    <tr>
+      <td><strong>Role</strong></td>
+      <td><code>.hdbrole</code></td>
+      <td>Database role with schema privileges</td>
+    </tr>
+    <tr>
+      <td><strong>Structured Privilege</strong></td>
+      <td><code>.hdbstructuredprivilege</code></td>
+      <td>Row-level filter using session variables</td>
+    </tr>
+    <tr>
+      <td><strong>Synonym</strong></td>
+      <td><code>.hdbsynonym</code></td>
+      <td>Cross-schema object alias</td>
+    </tr>
+    <tr>
+      <td><strong>Index / Statistics</strong></td>
+      <td><code>.hdbindex / .hdbstatistics</code></td>
+      <td>Performance optimization artifacts</td>
+    </tr>
+    <tr>
+      <td><strong>Grants</strong></td>
+      <td><code>.hdbgrants</code></td>
+      <td>Privilege grants on remote/external objects</td>
+    </tr>
+  </table>
+</div>
+
+
+<!-- ═══════════════════════════════════════════════════════════════
+     SLIDE 8 — ARTIFACT DEPLOYMENT DEEP DIVE
+═══════════════════════════════════════════════════════════════ -->
+<div class="slide">
+  <div class="slide-title">Artifact Deployment — Deep Dive</div>
+
+  <h3>Example: Deploying a Table</h3>
+<pre>
+User: "Create a BOOK table with BOOKID, BOOKNAME, AUTHOR, PRICE"
+
+Agent generates .hdbtable content:
+  COLUMN TABLE "BOOK" (
+      "BOOKID"    INTEGER NOT NULL,
+      "BOOKNAME"  NVARCHAR(200),
+      "AUTHOR"    NVARCHAR(150),
+      "PRICE"     DECIMAL(10,2),
+      PRIMARY KEY ("BOOKID")
+  )
+
+DI.WRITE("src/BOOK.hdbtable", content)    → rc=0  (staged in work area)
+DI.MAKE(DEPLOY=["src/BOOK.hdbtable"])     → rc=0  (activated in runtime)
+  
+Result: SYS.TABLES → "BOOK" in schema "AGENTHDI_CONTAINER"
+</pre>
+
+  <h3>Example: Deploying a Calculation View (Special Handling)</h3>
+<pre>
+Problem:  Targeted MAKE with just the CV file silently no-ops (rc=0, CV not created)
+          → HANA requires .hdiconfig in the SAME MAKE call to activate the CV plugin
+
+Fix applied in HDI-Agent:
+  DI.WRITE(".hdiconfig", all_plugins)          → stage root config
+  DI.WRITE("src/.hdiconfig", all_plugins)      → stage src-level config
+  DI.MAKE(DEPLOY=[".hdiconfig",
+                  "src/.hdiconfig",
+                  "src/CV_SALES.hdbcalculationview"])   → ✅ CV created
+</pre>
+
+  <h3>Example: Deploying a SQLScript Library (Special Handling)</h3>
+<pre>
+Problem:  src/.hdiconfig was missing "hdblibrary" plugin entry
+          → M_MESSAGES error: "src/.hdiconfig: Configuration does not define a
+            build plugin for file suffix hdblibrary"
+
+Fix applied in HDI-Agent:
+  DI.WRITE("src/.hdiconfig", all_plugins_including_hdblibrary)
+  DI.MAKE(DEPLOY=[".hdiconfig", "src/.hdiconfig", "src/MATH_UTILS.hdblibrary"])  → ✅
+</pre>
+</div>
+
+
+<!-- ═══════════════════════════════════════════════════════════════
+     SLIDE 9 — ARCHITECTURE DIAGRAM
+═══════════════════════════════════════════════════════════════ -->
+<div class="slide">
+  <div class="slide-title">HDI-Agent — System Architecture</div>
+
+<pre>
+┌───────────────────────────────────────────────────────────────────────────┐
+│                          HDI-AGENT SYSTEM                                  │
+│                                                                             │
+│  ┌─────────────────┐    ┌────────────────────────────────────────────────┐ │
+│  │   React UI       │───▶│           FastAPI Backend                      │ │
+│  │  (Vite / JSX)    │◀───│           api/app.py   Port: 8000              │ │
+│  │   Port: 5173     │    └──────────────────────┬─────────────────────── ┘ │
+│  └─────────────────┘                            │                           │
+│                                                 ▼                           │
+│                              ┌──────────────────────────────┐              │
+│                              │       AI Agent Core           │              │
+│                              │       agent/agent.py          │              │
+│                              │                               │              │
+│                              │  ┌────────────────────────┐  │              │
+│                              │  │   LLM: GPT-4o           │  │              │
+│                              │  │   agent/llm.py          │  │              │
+│                              │  └────────────────────────┘  │              │
+│                              │  ┌────────────────────────┐  │              │
+│                              │  │   Tool Registry 15+     │  │              │
+│                              │  │   agent/tools.py        │  │              │
+│                              │  └────────────────────────┘  │              │
+│                              │  ┌────────────────────────┐  │              │
+│                              │  │   Artifact Docs 30+     │  │              │
+│                              │  │   docs/*.md             │  │              │
+│                              │  └────────────────────────┘  │              │
+│                              └──────────────┬───────────────┘              │
+│                                             │ hdbcli (Python driver)        │
+│                              ┌──────────────▼───────────────┐              │
+│                              │     HANA Client Layer         │              │
+│                              │     agent/hana_client.py      │              │
+│                              │                               │              │
+│                              │  write_artifact()  deploy()   │              │
+│                              │  drop_artifact()   execute_sql│              │
+│                              │  list_artifacts()  read_artifact             │
+│                              └──────────────┬───────────────┘              │
+└─────────────────────────────────────────────┼─────────────────────────────┘
+                                              │ TLS / HANA Cloud Port 443
+                               ┌──────────────▼──────────────────────────┐
+                               │         SAP HANA Cloud                   │
+                               │                                           │
+                               │  ┌─────────────────────────────────────┐ │
+                               │  │   _SYS_DI (DI System Schema)         │ │
+                               │  │   Container Group Management          │ │
+                               │  └────────────────┬────────────────────┘ │
+                               │                   │                        │
+                               │  ┌────────────────▼────────────────────┐ │
+                               │  │  AGENTHDI_CONTAINER                  │ │
+                               │  │  ┌──────────────────────────────┐   │ │
+                               │  │  │  Work Area (Staging)          │   │ │
+                               │  │  │  .hdiconfig                   │   │ │
+                               │  │  │  src/*.hdbtable               │   │ │
+                               │  │  │  src/*.hdbview                │   │ │
+                               │  │  │  src/*.hdbcalculationview     │   │ │
+                               │  │  └─────────────┬────────────────┘   │ │
+                               │  │                │  DI.MAKE()           │ │
+                               │  │  ┌─────────────▼────────────────┐   │ │
+                               │  │  │  Runtime Schema               │   │ │
+                               │  │  │  TABLES / VIEWS               │   │ │
+                               │  │  │  PROCEDURES / FUNCTIONS       │   │ │
+                               │  │  │  CALC VIEWS / LIBRARIES       │   │ │
+                               │  │  │  VIRTUAL TABLES / SYNONYMS    │   │ │
+                               │  │  └──────────────────────────────┘   │ │
+                               │  └──────────────────────────────────────┘ │
+                               └──────────────────────────────────────────┘
+</pre>
+</div>
+
+
+<!-- ═══════════════════════════════════════════════════════════════
+     SLIDE 10 — ARCHITECTURE COMPONENTS TABLE
+═══════════════════════════════════════════════════════════════ -->
+<div class="slide">
+  <div class="slide-title">Architecture Components</div>
+
+  <table>
+    <tr><th>Component</th><th>File(s)</th><th>Role</th></tr>
+    <tr>
+      <td><strong>React Chat UI</strong></td>
+      <td><code>ui/src/App.jsx</code><br><code>ui/src/components/</code></td>
+      <td>Chat interface — user types natural language requests, sees formatted responses</td>
+    </tr>
+    <tr>
+      <td><strong>FastAPI Backend</strong></td>
+      <td><code>api/app.py</code><br><code>api/session_manager.py</code></td>
+      <td>REST API server — routes messages, manages sessions, streams agent responses</td>
+    </tr>
+    <tr>
+      <td><strong>Agent Core</strong></td>
+      <td><code>agent/agent.py</code></td>
+      <td>LLM orchestration loop — sends messages to GPT-4o, processes tool calls, manages conversation history</td>
+    </tr>
+    <tr>
+      <td><strong>LLM Interface</strong></td>
+      <td><code>agent/llm.py</code></td>
+      <td>OpenAI GPT-4o client — formats tool definitions, handles streaming</td>
+    </tr>
+    <tr>
+      <td><strong>Tool Registry</strong></td>
+      <td><code>agent/tools.py</code></td>
+      <td>15+ tools exposed to the LLM: create_artifact_file, deploy_artifact, execute_sql, list_artifacts, read_artifact_doc, etc.</td>
+    </tr>
+    <tr>
+      <td><strong>HANA Client</strong></td>
+      <td><code>agent/hana_client.py</code></td>
+      <td>Full DI API wrapper — handles WRITE, MAKE, DELETE, LIST, grants, structured privileges, VT verification</td>
+    </tr>
+    <tr>
+      <td><strong>Artifact Docs</strong></td>
+      <td><code>docs/*.md</code></td>
+      <td>30+ artifact type documentation injected as LLM context so GPT-4o generates correct syntax</td>
+    </tr>
+    <tr>
+      <td><strong>Session Logs</strong></td>
+      <td><code>logs/sessions/</code></td>
+      <td>Full audit trail — every WRITE, MAKE, GRANT, SQL call with timestamps and return codes</td>
+    </tr>
+    <tr>
+      <td><strong>Artifact Tree</strong></td>
+      <td><code>logs/artifact_tree.txt</code></td>
+      <td>Live file-tree snapshot of all deployed objects updated after every deploy</td>
+    </tr>
+    <tr>
+      <td><strong>Artifact Logs</strong></td>
+      <td><code>logs/artifacts/</code></td>
+      <td>Per-artifact deploy log — each .hdbtable/.hdbview/etc gets its own log file</td>
+    </tr>
+  </table>
+</div>
+
+
+<!-- ═══════════════════════════════════════════════════════════════
+     SLIDE 11 — SPECIAL DEPLOYMENT HANDLING
+═══════════════════════════════════════════════════════════════ -->
+<div class="slide">
+  <div class="slide-title">Special Deployment Handling — Known HANA HDI Quirks &amp; Fixes</div>
+
+  <table>
+    <tr><th>Artifact</th><th>Problem Found</th><th>Root Cause</th><th>Fix Applied</th></tr>
+    <tr>
+      <td><strong>Virtual Table<br>(.hdbvirtualtable)</strong></td>
+      <td>MAKE returns non-zero rc even when VT was created successfully</td>
+      <td>DI plugin validates remote source connectivity — minor status issues cause rc&gt;1 even on success</td>
+      <td>After non-zero rc, verify in <code>SYS.VIRTUAL_TABLES</code> — treat as success if table found</td>
+    </tr>
+    <tr>
+      <td><strong>Calculation View<br>(.hdbcalculationview)</strong></td>
+      <td>Targeted MAKE returns rc=0 but CV is never created (silent no-op)</td>
+      <td>CV plugin requires <code>.hdiconfig</code> in the SAME MAKE call on existing containers</td>
+      <td>Write <code>.hdiconfig</code> + <code>src/.hdiconfig</code> and include both in single MAKE with the CV file</td>
+    </tr>
+    <tr>
+      <td><strong>SQLScript Library<br>(.hdblibrary)</strong></td>
+      <td>MAKE returns rc=0 but library not in <code>SYS.LIBRARIES</code></td>
+      <td>Issue 1: <code>src/.hdiconfig</code> missing <code>hdblibrary</code> plugin entry (error 8210015)<br>
+          Issue 2: Deploying library alone after separate .hdiconfig MAKE fails — <code>db://DOUBLE</code> type unresolvable (error 8212001)</td>
+      <td>Write both <code>.hdiconfig</code> and <code>src/.hdiconfig</code> with ALL plugins. Deploy in a SINGLE MAKE together with library file</td>
+    </tr>
+    <tr>
+      <td><strong>Structured Privilege<br>(.hdbstructuredprivilege)</strong></td>
+      <td>HDI_USER gets "insufficient privilege" when querying view with SP check</td>
+      <td>HDI_USER (the connection user) was excluded from GRANT list. SP owned by #OO user — requires privileged connection to grant</td>
+      <td>Use <code>HANA_PRIV_USER</code> connection for SP grant. Include all users including HDI_USER. Swap rc/req_id bug in <code>GRANT_CONTAINER_SCHEMA_ROLE</code></td>
+    </tr>
+  </table>
+
+  <div class="highlight-box" style="margin-top:16px;">
+    <strong>Diagnostic method used:</strong> Added <code>M_MESSAGES</code> query after each failed deploy to expose HANA's internal error/warning messages.
+    These messages (normally only visible at DEBUG level) revealed the exact root cause for each issue.
+  </div>
+</div>
+
+
+<!-- ═══════════════════════════════════════════════════════════════
+     SLIDE 12 — LIVE DEMO FLOW
+═══════════════════════════════════════════════════════════════ -->
+<div class="slide">
+  <div class="slide-title">Live Demo — Step by Step</div>
+
+  <div class="two-col">
+    <div class="col-left">
+      <h3>Start the Agent</h3>
+<pre>
+python main.py          # Terminal 1
+# or
+./run.sh
+
+# Open UI
+http://localhost:5173
+</pre>
+
+      <h3>Demo Script</h3>
+      <table>
+        <tr><th>#</th><th>User Says</th><th>Agent Does</th></tr>
+        <tr><td>1</td><td>"Create a PRODUCT table with ID, NAME, CATEGORY and PRICE"</td><td>Deploys .hdbtable</td></tr>
+        <tr><td>2</td><td>"Create a view PREMIUM_PRODUCTS showing products with price &gt; 1000"</td><td>Deploys .hdbview</td></tr>
+        <tr><td>3</td><td>"Create a procedure GET_PRODUCTS_BY_CATEGORY"</td><td>Deploys .hdbprocedure</td></tr>
+        <tr><td>4</td><td>"Create a calculation view CV_PRODUCT_ANALYSIS on the PRODUCT table"</td><td>Deploys .hdbcalculationview with .hdiconfig fix</td></tr>
+        <tr><td>5</td><td>"Create a math utils library with round, percentage, clamp functions"</td><td>Deploys .hdblibrary with src/.hdiconfig fix</td></tr>
+        <tr><td>6</td><td>"List all deployed artifacts"</td><td>Shows artifact tree</td></tr>
+        <tr><td>7</td><td>"Insert 3 sample rows into PRODUCT"</td><td>Runs INSERT via execute_sql</td></tr>
+        <tr><td>8</td><td>"Show all products with price &gt; 500"</td><td>Runs SELECT, returns data</td></tr>
+      </table>
+    </div>
+    <div class="col-right">
+      <h3>Verify in DBX</h3>
+      <ul>
+        <li>Open SAP HANA Database Explorer</li>
+        <li>Connect to HANA Cloud instance</li>
+        <li>Navigate to: <strong>Catalog → Schemas → AGENTHDI_CONTAINER</strong></li>
+        <li>Verify: Tables, Views, Procedures, Column Views, Libraries all visible</li>
+      </ul>
+
+      <div class="success-box" style="margin-top:20px;">
+        <strong>Expected result:</strong><br>
+        All artifacts created by the agent are visible in DBX exactly as if created manually via SAP Business Application Studio or Web IDE.
+      </div>
+
+      <h3>Session Log Audit</h3>
+      <p>Every operation is logged in <code>logs/sessions/session_*.log</code>:</p>
+<pre>
+WRITE | AGENTHDI_CONTAINER | src/PRODUCT.hdbtable | rc=0
+MAKE  | AGENTHDI_CONTAINER | deploy=[...] | rc=0
+GRANT | AGENTHDI_CONTAINER | HDI_USER OK
+</pre>
+    </div>
+  </div>
+</div>
+
+
+<!-- ═══════════════════════════════════════════════════════════════
+     SLIDE 13 — DETAILED EXPLANATION: HDI CONTAINER & ARTIFACTS
+═══════════════════════════════════════════════════════════════ -->
+<div class="slide">
+  <div class="slide-title">Deep Explanation: HDI Container &amp; Artifact Deployment</div>
+  <p class="slide-subtitle">Understanding from First Principles</p>
+
+  <h2>1. What is a Container?</h2>
+  <p>
+  An HDI container is an <strong>isolated, self-contained database namespace</strong> within SAP HANA.
+  Think of it as a tenant within the database. Every object (table, view, procedure, library) created
+  inside the container lives in the container's own runtime schema — completely separated from other schemas.
+  </p>
+  <p>
+  When you create a container named <code>AGENTHDI_CONTAINER</code>, HANA automatically:
+  </p>
+  <ul>
+    <li>Creates a schema with the same name</li>
+    <li>Creates technical users: <code>AGENTHDI_CONTAINER#OO</code> (owns all objects) and <code>AGENTHDI_CONTAINER#DI</code> (performs DI operations)</li>
+    <li>Sets up the DI API: a set of stored procedures (<code>WRITE</code>, <code>MAKE</code>, <code>DELETE</code>, <code>LIST</code>) accessible under <code>AGENTHDI_CONTAINER#DI</code></li>
+  </ul>
+
+  <h2>2. What is the .hdiconfig File?</h2>
+  <p>
+  The <code>.hdiconfig</code> file is the <strong>plugin registry</strong> for the container.
+  It is a JSON file that maps each file extension to a build plugin:
+  </p>
+<pre>
+{
+  "file_suffixes": {
+    "hdbtable":           { "plugin_name": "com.sap.hana.di.table" },
+    "hdbview":            { "plugin_name": "com.sap.hana.di.view" },
+    "hdbprocedure":       { "plugin_name": "com.sap.hana.di.procedure" },
+    "hdbcalculationview": { "plugin_name": "com.sap.hana.di.calculationview" },
+    "hdblibrary":         { "plugin_name": "com.sap.hana.di.library" }
+  }
+}
+</pre>
+  <p>
+  <strong>Without .hdiconfig, DI.MAKE cannot compile any artifact.</strong>
+  The HDI system doesn't know what plugin to use for a given file extension.
+  </p>
+  <p>
+  In our container, <code>.hdiconfig</code> is placed at the <strong>root level</strong>. But HANA also
+  checks for a <code>src/.hdiconfig</code> (directory-level config) that takes precedence for files
+  placed under <code>src/</code>. This distinction caused the library deployment bug:
+  the old <code>src/.hdiconfig</code> was missing the <code>hdblibrary</code> plugin.
+  </p>
+
+  <h2>3. The Work Area vs Runtime Schema</h2>
+  <p>
+  HDI uses a <strong>two-phase model</strong>:
+  </p>
+  <table>
+    <tr><th>Work Area (Staging)</th><th>Runtime Schema (Active)</th></tr>
+    <tr>
+      <td>Files written via DI.WRITE</td>
+      <td>Objects created via DI.MAKE</td>
+    </tr>
+    <tr>
+      <td>Not visible in SYS catalog (SYS.TABLES, SYS.VIEWS)</td>
+      <td>Fully visible in SYS catalog and DBX</td>
+    </tr>
+    <tr>
+      <td>Design-time files (.hdbtable, .hdbview DDL)</td>
+      <td>Runtime objects (actual TABLE, VIEW objects)</td>
+    </tr>
+    <tr>
+      <td>Survives restarts, accessible via DI.LIST</td>
+      <td>Accessible via SQL SELECT, CALL, etc.</td>
+    </tr>
+    <tr>
+      <td>After MAKE: file is removed from staging area</td>
+      <td>Object remains until explicitly undeployed</td>
+    </tr>
+  </table>
+</div>
+
+
+<!-- ═══════════════════════════════════════════════════════════════
+     SLIDE 14 — WHAT HAPPENS DURING DI.MAKE
+═══════════════════════════════════════════════════════════════ -->
+<div class="slide">
+  <div class="slide-title">What Happens During DI.MAKE?</div>
+
+  <p>When DI.MAKE is called with a list of files to deploy, HANA performs these internal steps:</p>
+
+  <div class="flow-step"><strong>1. Prepare the Make Transaction</strong><br>
+  Locks the container for consistent state</div>
+  <span class="arrow">▼</span>
+  <div class="flow-step"><strong>2. Validate File Extensions vs .hdiconfig Plugins</strong><br>
+  For each file in DEPLOY list: find the registered plugin in .hdiconfig<br>
+  ❌ If plugin not found → ERROR: "Configuration does not define a build plugin for file suffix X"</div>
+  <span class="arrow">▼</span>
+  <div class="flow-step"><strong>3. Build Dependency Graph</strong><br>
+  HANA resolves dependencies between artifacts (e.g. a view depends on a table)<br>
+  ❌ If dependency missing → ERROR: "the file requires db://TYPE which is not provided by any file"</div>
+  <span class="arrow">▼</span>
+  <div class="flow-step"><strong>4. Precompile</strong><br>
+  Parse and validate the DDL syntax of each artifact</div>
+  <span class="arrow">▼</span>
+  <div class="flow-step"><strong>5. Execute DDL</strong><br>
+  Run the equivalent of CREATE TABLE / CREATE VIEW / CREATE PROCEDURE<br>
+  Objects land in the container's runtime schema owned by #OO user</div>
+  <span class="arrow">▼</span>
+  <div class="flow-step"><strong>6. Return rc (return code) and M_MESSAGES</strong><br>
+  rc=0: success | rc=1: success with warnings | rc&lt;0 or rc&gt;1: error<br>
+  M_MESSAGES table contains detailed INFO / WARNING / ERROR messages per file</div>
+
+  <div class="warn-box" style="margin-top:16px;">
+    <strong>Important:</strong> HANA sometimes returns <strong>rc=0 but creates nothing</strong>.
+    This happens when .hdiconfig is not in the MAKE context for certain plugin types (CVs, libraries).
+    HDI-Agent handles this by always including .hdiconfig + src/.hdiconfig in the MAKE for these artifact types.
+  </div>
+
+  <h3>How to Debug a Failed MAKE</h3>
+<pre>
+-- Query M_MESSAGES after a failed deploy (use the REQUEST_ID from MAKE call):
+SELECT SEVERITY, MESSAGE_CODE, MESSAGE, PATH
+FROM "AGENTHDI_CONTAINER#DI"."M_MESSAGES"
+WHERE REQUEST_ID = &lt;request_id&gt;
+ORDER BY ROW_ID;
+
+-- HDI-Agent logs this automatically at INFO level:
+-- LIB_VERIFY | AGENTHDI_CONTAINER | MATH_UTILS | M_MESSAGES (req=157685): [...]
+</pre>
+</div>
+
+
+<!-- ═══════════════════════════════════════════════════════════════
+     SLIDE 15 — KEY BENEFITS & SUMMARY
+═══════════════════════════════════════════════════════════════ -->
+<div class="slide">
+  <div class="slide-title">Key Benefits &amp; Summary</div>
+
+  <div class="two-col">
+    <div class="col-left">
+      <h3>Before HDI-Agent</h3>
+      <ul>
+        <li>Developer writes DDL manually</li>
+        <li>Must remember exact file extension per artifact type</li>
+        <li>Must manage .hdiconfig by hand</li>
+        <li>Must call DI.WRITE, DI.MAKE in correct sequence</li>
+        <li>Must grant privileges after every deploy</li>
+        <li>Debugging requires deep knowledge of M_MESSAGES</li>
+        <li>Silent failures (rc=0 but object not created) are hard to detect</li>
+        <li>Time per artifact: 5–15 minutes</li>
+      </ul>
+    </div>
+    <div class="col-right">
+      <h3>With HDI-Agent</h3>
+      <ul>
+        <li>Describe in plain English — GPT-4o generates correct DDL</li>
+        <li>Agent knows all 30+ artifact types and their syntax</li>
+        <li>.hdiconfig managed automatically</li>
+        <li>DI.WRITE → DI.MAKE sequence handled internally</li>
+        <li>Grants issued automatically after each deploy</li>
+        <li>M_MESSAGES queried and logged automatically for diagnostics</li>
+        <li>Special handling for CVs, libraries, VTs built-in</li>
+        <li>Time per artifact: &lt;30 seconds</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="success-box" style="margin-top:24px; font-size:12pt;">
+    <strong>Result:</strong> HDI-Agent reduces artifact deployment time by <strong>90%+</strong>,
+    eliminates syntax errors, and makes HANA HDI accessible to users who don't know the DI API.
+    Full audit trail in session logs. All 30+ artifact types supported out of the box.
+  </div>
+
+  <br>
+  <div class="highlight-box center">
+    <strong>The agent doesn't just deploy — it understands HANA.&nbsp;</strong>
+    It knows when a deploy silently fails, knows how to fix plugin registration,
+    and knows which grants are needed for each object type.
+  </div>
+</div>
+
+</body>
+</html>

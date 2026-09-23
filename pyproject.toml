@@ -1,0 +1,28 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "hdi-agent"
+version = "0.1.0"
+description = "AI Agent for SAP HANA HDI artifact creation and deployment via SQL API"
+readme = "README.md"
+requires-python = ">=3.9"
+dependencies = [
+    "hdbcli>=2.19.0",
+    "generative-ai-hub-sdk>=4.0.0",
+    "python-dotenv>=1.0.0",
+    "rich>=13.0.0",
+    "click>=8.1.0",
+    "requests>=2.31.0",
+]
+
+[project.optional-dependencies]
+# MCP server requires Python >=3.10
+mcp = ["mcp>=1.0.0"]
+
+[project.scripts]
+hdi-agent = "main:cli"
+
+[tool.hatch.build.targets.wheel]
+packages = ["agent"]

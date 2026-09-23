@@ -1,0 +1,26 @@
+models:
+  orchestrator:
+    provider: "gen_ai_hub"
+    model_id: "anthropic--claude-3-5-sonnet"
+    temperature: 0.2
+    max_tokens: 32000
+
+hana:
+  host_env_var: "HANA_HOST"
+  port_env_var: "HANA_PORT"
+  user_env_var: "HANA_USER"
+  password_env_var: "HANA_PASSWORD"
+  encrypt_env_var: "HANA_ENCRYPT"
+  ssl_validate_env_var: "HANA_SSL_VALIDATE_CERT"
+
+hdi:
+  container_env_var: "HDI_CONTAINER"
+
+# Slash commands available in interactive mode
+slash_commands:
+  enabled: true
+  list:
+    - "/reset      — clear conversation history"
+    - "/containers — list all HDI containers"
+    - "/history    — show message history"
+    - "/exit       — quit the agent"
